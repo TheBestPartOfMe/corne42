@@ -35,6 +35,18 @@
             hold-trigger-on-release;
             hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41>;
         };
+
+        hmr_l_layer: hmr_l_layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR_L_LAYER";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41 38 37 36>;
+            hold-trigger-on-release;
+        };
     };
 
     keymap {
@@ -49,10 +61,10 @@
 
             display-name = "Base";
             bindings = <
-&kp ESCAPE  &kp J            &kp D           &kp U             &kp A              &kp X            &kp P    &kp H  &kp L      &kp M    &kp W  &kp MINUS
-&kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E              &kp O            &kp B    &kp N  &kp R      &kp S    &kp G  &kp Q
-&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON    &kp Y    &kp Z  &kp COMMA  &kp DOT  &kp K  &kp ESC
-                                             &kp LGUI          &mo 1              &kp SPACE        &kp RET  &mo 2  &kp RALT
+&kp ESCAPE  &kp J            &kp D           &kp U             &kp A              &kp X               &kp P    &kp H          &kp L      &kp M    &kp W  &kp MINUS
+&kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E              &hmr_l_layer 3 O    &kp B    &kp N          &kp R      &kp S    &kp G  &kp Q
+&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON       &kp Y    &kp Z          &kp COMMA  &kp DOT  &kp K  &kp ESC
+                                             &kp LGUI          &mo 1              &kp SPACE           &kp RET  &kp BACKSPACE  &mo 2
             >;
         };
 
@@ -88,10 +100,13 @@
             >;
         };
 
-        extra_1 { status = "reserved"; };
-
-        extra_2 { status = "reserved"; };
-
-        extra_3 { status = "reserved"; };
+        layer_3 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp NUMBER_7  &kp N8        &kp N9        &kp PLUS      &kp MINUS
+&trans  &trans  &trans  &trans  &trans  &trans    &kp N0  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp ASTERISK  &kp SLASH
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL     &trans
+                        &trans  &trans  &trans    &trans  &trans        &trans
+            >;
+        };
     };
 };
