@@ -61,9 +61,9 @@
 
             display-name = "Base";
             bindings = <
-&kp ESCAPE  &kp J            &kp D           &kp U             &kp A              &kp X               &kp P    &kp H          &kp L      &kp M    &kp W  &kp DELETE
-&kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E              &hmr_l_layer 3 O    &kp B    &kp N          &kp R      &kp S    &kp G  &kp Q
-&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON       &kp Y    &kp Z          &kp COMMA  &kp DOT  &kp K  &kp MINUS
+&kp ESCAPE  &kp J            &kp D           &kp U             &kp A              &kp X               &kp P    &kp H          &kp L      &kp M           &kp W                &kp DELETE
+&kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E              &hmr_l_layer 3 O    &kp B    &kp N          &kp R      &HMR_R LCTRL S  &HMR_R LEFT_SHIFT G  &kp Q
+&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON       &kp Y    &kp Z          &kp COMMA  &kp DOT         &kp K                &kp MINUS
                                              &kp LGUI          &mo 1              &kp SPACE           &kp RET  &kp BACKSPACE  &mo 2
             >;
         };
@@ -77,10 +77,10 @@
 
             display-name = "Lower";
             bindings = <
-&kp EQUAL  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6   &kp N7    &kp N8    &kp N9        &kp N0    &kp BSPC
-&kp GRAVE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans   &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp DOWN  &trans
-&kp LSHFT  &trans        &trans        &trans        &trans        &trans          &trans   &trans    &trans    &trans        &trans    &trans
-                                       &kp LGUI      &trans        &kp SPACE       &kp RET  &trans    &kp RALT
+&kp EQUAL  &kp N1        &kp N2        &kp N3    &kp N4  &kp N5       &kp N6   &kp N7    &kp N8    &kp N9        &kp N0    &kp BSPC
+&trans     &trans        &trans        &trans    &trans  &trans       &trans   &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp DOWN  &trans
+&trans     &bt BT_SEL 0  &bt BT_SEL 1  &trans    &trans  &trans       &trans   &trans    &trans    &trans        &trans    &trans
+                                       &kp LGUI  &trans  &kp SPACE    &kp RET  &trans    &kp RALT
             >;
         };
 
@@ -93,10 +93,10 @@
 
             display-name = "Raise";
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
-&kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
-&kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &kp TILDE
-                             &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+&kp EQUAL  &kp LS(EQUAL)  &kp RA(GRAVE)     &kp RA(NUMBER_8)     &kp RA(NUMBER_9)     &kp GRAVE              &kp CARET  &kp AMPS   &kp KP_MULTIPLY  &kp LPAR  &kp RPAR  &kp BSPC
+&kp LCTRL  &kp RA(MINUS)  &kp LS(NUMBER_7)  &kp RA(N7)           &kp RA(NUMBER_0)     &kp LS(RIGHT_BRACE)    &kp MINUS  &kp EQUAL  &kp LBKT         &kp RBKT  &kp BSLH  &kp GRAVE
+&kp LSHFT  &kp HASH       &kp LS(NUMBER_4)  &kp RA(NON_US_BSLH)  &kp RA(RIGHT_BRACE)  &trans                 &kp UNDER  &kp PLUS   &kp LBRC         &kp RBRC  &kp PIPE  &kp TILDE
+                                            &kp LGUI             &trans               &kp SPACE              &kp RET    &trans     &kp RALT
             >;
         };
 
