@@ -47,6 +47,23 @@
             hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 39 40 41 38 37 36>;
             hold-trigger-on-release;
         };
+
+        // ^ and ` are dead keys on the German host layout (they combine with the
+        // next keystroke instead of typing on their own), so producing the bare
+        // character means tapping the dead key then Space.
+        de_caret: de_caret {
+            compatible = "zmk,behavior-macro";
+            label = "DE_CARET";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE>, <&kp SPACE>;
+        };
+
+        de_grave: de_grave {
+            compatible = "zmk,behavior-macro";
+            label = "DE_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&kp LS(EQUAL)>, <&kp SPACE>;
+        };
     };
 
     keymap {
@@ -63,7 +80,7 @@
             bindings = <
 &kp ESCAPE  &kp J            &kp D           &kp U             &kp A              &kp X               &kp P    &kp H          &kp L      &kp M           &kp W                &kp DELETE
 &kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E              &hmr_l_layer 3 O    &kp B    &kp N          &kp R      &HMR_R LCTRL S  &HMR_R LEFT_SHIFT G  &kp Q
-&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON       &kp Z    &kp Y          &kp COMMA  &kp DOT         &kp K                &kp MINUS
+&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp APOSTROPHE     &kp SEMICOLON       &kp Z    &kp Y          &kp COMMA  &kp DOT         &kp K                &kp MINUS
                                              &kp LGUI          &mo 2              &kp SPACE           &kp RET  &kp BACKSPACE  &mo 1
             >;
         };
@@ -85,26 +102,33 @@
         };
 
         raise_layer {
+            // Neo2 "Ebene 3" (Sondertasten) — brackets & symbols, reachable by holding
+            // this layer. Bindings assume a German (QWERTZ) host keyboard layout, since
+            // ZMK only sends raw HID codes and the OS layout decides the actual glyph;
+            // RA() = AltGr, LS() = Shift. ^ and ` go through the de_caret/de_grave
+            // macros because they're dead keys in German (see behaviors above).
             // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+            // |      |  …  |  _  |  [  |  ]  |  ^  |   |  !  |  <  |  >  |  =  |  &  |      |
+            // |      |  \  |  /  |  {  |  }  |  *  |   |  ?  |  (  |  )  |  -  |  :  |      |
+            // |      |  #  |  $  |  |  |  ~  |  `  |   |  +  |  %  |  "  |  '  |  ;  |      |
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             display-name = "Raise";
             bindings = <
-&kp EQUAL  &kp LS(EQUAL)  &kp RA(GRAVE)     &kp RA(NUMBER_8)     &kp RA(NUMBER_9)     &kp GRAVE              &kp LS(NUMBER_1)  &kp NON_US_BSLH  &kp LS(NON_US_HASH)  &kp LS(N0)           &kp LS(NUMBER_6)  &none
-&kp LCTRL  &kp RA(MINUS)  &kp LS(NUMBER_7)  &kp RA(N7)           &kp RA(NUMBER_0)     &kp LS(RIGHT_BRACE)    &kp LS(MINUS)     &kp LS(N8)       &kp LS(LBKT)         &kp LS(N0)           &kp LS(SLASH)     &kp RA(Q)
-&kp LSHFT  &kp HASH       &kp LS(NUMBER_4)  &kp RA(NON_US_BSLH)  &kp RA(RIGHT_BRACE)  &trans                 &kp PLUS          &kp LS(N5)       &kp LS(NUMBER_2)     &kp LS(NON_US_BSLH)  &kp LS(KP_COMMA)  &none
-                                            &kp LGUI             &trans               &kp SPACE              &kp RET           &trans           &none
+&kp EQUAL  &kp RA(PERIOD)  &kp LS(SLASH)  &kp RA(N8)          &kp RA(N9)           &de_caret       &kp LS(N1)  &kp NON_US_BSLH     &kp LS(NON_US_BSLH)  &kp LS(N0)           &kp LS(N6)     &none
+&kp LCTRL  &kp RA(MINUS)   &kp LS(N7)     &kp RA(N7)          &kp RA(N0)           &kp LS(RIGHT_BRACKET)  &kp LS(MINUS)  &kp LS(N8)   &kp LS(N9)           &kp SLASH            &kp LS(PERIOD) &kp RA(Q)
+&kp LSHFT  &kp NON_US_HASH &kp LS(N4)     &kp RA(NON_US_BSLH) &kp RA(RIGHT_BRACKET) &de_grave      &kp RIGHT_BRACKET  &kp LS(N5)      &kp LS(N2)           &kp LS(NON_US_HASH)  &kp LS(COMMA)  &none
+                                          &kp LGUI            &trans               &kp SPACE       &kp RET     &trans              &none
             >;
         };
 
         layer_3 {
+            // Math operators use the same German-layout HID trick as raise_layer:
+            // + = RIGHT_BRACKET, - = SLASH, * = LS(RIGHT_BRACKET), / = LS(N7), = = LS(N0).
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp NUMBER_7  &kp N8        &kp N9        &kp PLUS      &kp MINUS
-&trans  &trans  &trans  &trans  &trans  &trans    &kp N0  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp ASTERISK  &kp SLASH
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL     &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp NUMBER_7  &kp N8        &kp N9        &kp RIGHT_BRACKET     &kp SLASH
+&trans  &trans  &trans  &trans  &trans  &trans    &kp N0  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp LS(RIGHT_BRACKET) &kp LS(N7)
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp LS(N0)            &trans
                         &trans  &trans  &trans    &trans  &trans        &trans
             >;
         };
