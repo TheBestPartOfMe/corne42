@@ -63,7 +63,7 @@
             bindings = <
 &kp ESCAPE  &kp J            &kp D           &kp U             &kp A              &kp X               &kp P    &kp H          &kp L      &kp M           &kp W                &kp DELETE
 &kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E              &hmr_l_layer 3 O    &kp B    &kp N          &kp R      &HMR_R LCTRL S  &HMR_R LEFT_SHIFT G  &kp Q
-&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON       &kp Y    &kp Z          &kp COMMA  &kp DOT         &kp K                &kp MINUS
+&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp DOUBLE_QUOTES  &kp SEMICOLON       &kp Z    &kp Y          &kp COMMA  &kp DOT         &kp K                &kp MINUS
                                              &kp LGUI          &mo 1              &kp SPACE           &kp RET  &kp BACKSPACE  &mo 2
             >;
         };
