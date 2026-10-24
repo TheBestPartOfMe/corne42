@@ -6,8 +6,10 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "dynamic_keymap.h"
 
-enum layers { _BASE, _LOWER, _RAISE, _NUM };
+// _GAME sits right above _BASE so Lower/Raise/Num still work on top of it.
+enum layers { _BASE, _GAME, _LOWER, _RAISE, _NUM };
 
 // ^ and ` are dead keys on the German host layout, so producing the bare
 // character means tapping the dead key then Space. Exposed to Vial as
@@ -32,6 +34,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TAB,    HM_C,    HM_T,    KC_I,    KC_E,    HM_O,                         KC_B,    KC_N,    KC_R,    HM_S,    HM_G,    KC_Q,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_F,    KC_V, KC_LBRC, KC_QUOT, KC_SCLN,                         KC_Z,    KC_Y, KC_COMM,  KC_DOT,    KC_K, KC_MINS,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_LGUI, MO(_RAISE), KC_SPC,   KC_ENT, KC_BSPC, MO(_LOWER)
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  // Gaming: plain keys in the usual positions (like a normal German keyboard),
+  // no home row mods. Toggled with Esc + Tab (Vial combo, see below).
+  [_GAME] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+       KC_TAB,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, MO(_RAISE), KC_SPC,   KC_ENT, KC_BSPC, MO(_LOWER)
                                       //`--------------------------'  `--------------------------'
@@ -88,6 +104,28 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
         'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
                        '*', '*', '*',  '*', '*', '*'
     );
+
+#ifdef VIAL_COMBO_ENABLE
+// Vial keeps combos in EEPROM, which starts out empty after flashing. Put
+// Esc + Tab -> toggle gaming layer into slot 0 if that slot is unused, so it
+// also shows up (and can be changed) in the Vial app.
+extern combo_t  key_combos[];
+extern uint16_t key_combos_keys[][5];
+
+void keyboard_post_init_user(void) {
+    vial_combo_entry_t entry;
+    if (dynamic_keymap_get_combo(0, &entry) != 0 || entry.output != KC_NO) {
+        return;
+    }
+    entry = (vial_combo_entry_t){
+        .input  = {KC_ESC, KC_TAB, COMBO_END, COMBO_END},
+        .output = TG(_GAME),
+    };
+    dynamic_keymap_set_combo(0, &entry);
+    memcpy(key_combos_keys[0], entry.input, sizeof(entry.input));
+    key_combos[0].keycode = entry.output;
+}
+#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!record->event.pressed) {
@@ -221,7 +259,7 @@ static void render_scene(uint8_t wpm) {
 }
 
 static void render_status(uint8_t wpm) {
-    static const char names[][6] PROGMEM = {"BASE ", "LOWER", "RAISE", " NUM "};
+    static const char names[][6] PROGMEM = {"BASE ", "GAME ", "LOWER", "RAISE", " NUM "};
     bool caps = host_keyboard_led_state().caps_lock;
 
     oled_set_cursor(0, 12);
