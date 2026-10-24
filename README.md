@@ -19,6 +19,7 @@ Die aktuell gebaute Tastatur läuft mit **Vial auf RP2040**.
   - `C` / `T` → Shift / Ctrl (links)
   - `S` / `G` → Ctrl / Shift (rechts)
   - `O` gehalten → Num-Layer
+- **Links unten:** Alt (linkes Alt, nicht AltGr); Shift liegt auf den Home-Row-Mods. **Win** liegt auf dem äußeren linken Daumen.
 - **Lower** (rechter Daumen): Zahlen und Pfeiltasten
 - **Raise** (linker Daumen): Neo2-Symbole („Ebene 3“). `^` und `` ` `` werden als Dead-Key + Leertaste gesendet.
 - **Num** (`O` halten): Ziffernblock mit `+ - * / =`

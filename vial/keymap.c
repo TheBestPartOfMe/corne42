@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_TAB,    HM_C,    HM_T,    KC_I,    KC_E,    HM_O,                         KC_B,    KC_N,    KC_R,    HM_S,    HM_G,    KC_Q,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_F,    KC_V, KC_LBRC, KC_QUOT, KC_SCLN,                         KC_Z,    KC_Y, KC_COMM,  KC_DOT,    KC_K, KC_MINS,
+      KC_LALT,    KC_F,    KC_V, KC_LBRC, KC_QUOT, KC_SCLN,                         KC_Z,    KC_Y, KC_COMM,  KC_DOT,    KC_K, KC_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, MO(_RAISE), KC_SPC,   KC_ENT, KC_BSPC, MO(_LOWER)
                                       //`--------------------------'  `--------------------------'
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, RALT(KC_MINS), S(KC_7), RALT(KC_7), RALT(KC_0), S(KC_RBRC),      S(KC_MINS), S(KC_8), S(KC_9), KC_SLSH, S(KC_DOT), RALT(KC_Q),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, KC_NUHS, S(KC_4), RALT(KC_NUBS), RALT(KC_RBRC), DE_GRV_S,         KC_RBRC, S(KC_5), S(KC_2), S(KC_NUHS), S(KC_COMM), XXXXXXX,
+      KC_LALT, KC_NUHS, S(KC_4), RALT(KC_NUBS), RALT(KC_RBRC), DE_GRV_S,         KC_RBRC, S(KC_5), S(KC_2), S(KC_NUHS), S(KC_COMM), XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, XXXXXXX
                                       //`--------------------------'  `--------------------------'

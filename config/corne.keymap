@@ -84,7 +84,7 @@
             bindings = <
 &kp ESCAPE  &kp J            &kp D           &kp U             &kp A           &kp X               &kp P    &kp H          &kp L      &kp M           &kp W                &kp DELETE
 &kp TAB     &HMR_L LSHIFT C  &HMR_L LCTRL T  &kp I             &kp E           &hmr_l_layer 3 O    &kp B    &kp N          &kp R      &HMR_R LCTRL S  &HMR_R LEFT_SHIFT G  &kp Q
-&kp LSHFT   &kp F            &kp V           &kp LEFT_BRACKET  &kp APOSTROPHE  &kp SEMICOLON       &kp Z    &kp Y          &kp COMMA  &kp DOT         &kp K                &kp MINUS
+&kp LALT    &kp F            &kp V           &kp LEFT_BRACKET  &kp APOSTROPHE  &kp SEMICOLON       &kp Z    &kp Y          &kp COMMA  &kp DOT         &kp K                &kp MINUS
                                              &kp LGUI          &mo 2           &kp SPACE           &kp RET  &kp BACKSPACE  &mo 1
             >;
         };
@@ -121,7 +121,7 @@
             bindings = <
 &kp LS(N0)  &kp RA(PERIOD)   &kp LS(SLASH)  &kp RA(N8)           &kp RA(N9)             &de_caret                &kp LS(N1)         &kp NON_US_BSLH  &kp LS(NON_US_BSLH)  &kp LS(N0)           &kp LS(N6)      &none
 &kp LCTRL   &kp RA(MINUS)    &kp LS(N7)     &kp RA(N7)           &kp RA(N0)             &kp LS(RIGHT_BRACKET)    &kp LS(MINUS)      &kp LS(N8)       &kp LS(N9)           &kp SLASH            &kp LS(PERIOD)  &kp RA(Q)
-&kp LSHFT   &kp NON_US_HASH  &kp LS(N4)     &kp RA(NON_US_BSLH)  &kp RA(RIGHT_BRACKET)  &de_grave                &kp RIGHT_BRACKET  &kp LS(N5)       &kp LS(N2)           &kp LS(NON_US_HASH)  &kp LS(COMMA)   &none
+&kp LALT    &kp NON_US_HASH  &kp LS(N4)     &kp RA(NON_US_BSLH)  &kp RA(RIGHT_BRACKET)  &de_grave                &kp RIGHT_BRACKET  &kp LS(N5)       &kp LS(N2)           &kp LS(NON_US_HASH)  &kp LS(COMMA)   &none
                                             &kp LGUI             &trans                 &kp SPACE                &kp RET            &trans           &none
             >;
         };
