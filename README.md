@@ -23,6 +23,7 @@ Die aktuell gebaute Tastatur läuft mit **Vial auf RP2040**.
 - **Lower** (rechter Daumen): Zahlen und Pfeiltasten
 - **Raise** (linker Daumen): Neo2-Symbole („Ebene 3“). `^` und `` ` `` werden als Dead-Key + Leertaste gesendet.
 - **Num** (`O` halten): Ziffernblock mit `+ - * / =`
+- **Game** (nur Vial, **Esc + Tab** gleichzeitig = an/aus): normales QWERTZ wie auf einer deutschen Tastatur, ohne Home-Row-Mods. Daumentasten wie auf Base. Der Combo steht in Vial auf Slot 0 und wird nach dem Flashen automatisch angelegt, wenn der Slot leer ist.
 
 Die Home-Row-Mods nutzen *Chordal Hold*: Ein Mod löst nur aus, wenn die nächste Taste auf der anderen Hand liegt. Tapping-Term 200 ms, Quick-Tap 175 ms.
 

@@ -9,7 +9,7 @@ OLED_ENABLE         = yes
 OLED_DRIVER         = ssd1306
 WPM_ENABLE          = yes
 EXTRAKEY_ENABLE     = no
-COMBO_ENABLE        = no
+COMBO_ENABLE        = yes
 
 QMK_SETTINGS        = no
 
