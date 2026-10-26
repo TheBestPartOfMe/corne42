@@ -76,4 +76,21 @@ Das linke OLED (128×32) läuft hochkant:
 
 ## ZMK (nice!nano v2)
 
-Die ZMK-Config in [`config/`](config/) wird per GitHub Actions gebaut ([`build.yaml`](build.yaml)). Die Firmware gibt es als Artefakt des Workflow-Runs. Die linke Hälfte hat ZMK Studio aktiviert.
+Die ZMK-Config in [`config/`](config/) wird per GitHub Actions gebaut ([`build.yaml`](build.yaml)). Die Firmware gibt es als Artefakt des Workflow-Runs. Die linke Hälfte ist die Haupthälfte (Central): Sie hat das OLED, verbindet sich mit dem Rechner und hat ZMK Studio aktiviert.
+
+### OLED
+
+Nur die linke Hälfte hat ein OLED (128×32). Der Bildschirm kommt aus [`oled_status/`](oled_status/), eingeschaltet in [`config/corne_left.conf`](config/corne_left.conf). Das Repo ist dafür als ZMK-Modul eingebunden ([`zephyr/module.yml`](zephyr/module.yml)).
+
+- Links Mimikyu
+- Zeile 1: aktiver Layer, BT-Profil mit Status (✓ verbunden, ✕ getrennt, `…` frei/Pairing) oder `USB`
+- Zeile 2: WPM und Verlauf
+- Zeile 3: Akku links (`L`) und rechts (`R`). Blitz = lädt, `R ✕ weg` = rechte Hälfte nicht verbunden
+
+Steht das Bild auf dem Kopf, `CONFIG_CORNE42_OLED_ROTATE_180=y` in `config/corne_left.conf` ergänzen.
+
+Mimikyu kommt aus [`pokemon-colorscripts`](https://gitlab.com/phoneybadger/pokemon-colorscripts) und wird mit [`oled_status/tools/sprite.py`](oled_status/tools/sprite.py) in ein 1-Bit-Bild umgewandelt. Ein anderes Pokémon geht genauso, solange es höchstens 32 Pixel hoch ist:
+
+```sh
+python3 oled_status/tools/sprite.py mimikyu > oled_status/src/mimikyu.c
+```

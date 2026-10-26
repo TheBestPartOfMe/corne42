@@ -1,0 +1,4 @@
+name: corne42-oled-status
+build:
+  cmake: oled_status
+  kconfig: oled_status/Kconfig

@@ -1,0 +1,16 @@
+config CORNE42_OLED_STATUS
+    bool "Status screen with Mimikyu for the 128x32 corne OLED"
+    default y
+    depends on ZMK_DISPLAY && ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
+    select LV_USE_CANVAS
+    select LV_USE_IMG
+    select LV_FONT_UNSCII_8
+    select ZMK_WPM
+
+config CORNE42_OLED_ROTATE_180
+    bool "Rotate the picture by 180 degrees"
+    depends on CORNE42_OLED_STATUS
+    help
+      ZMK's corne.dtsi orients the OLED for the left half. Enable this if the
+      picture is upside down.

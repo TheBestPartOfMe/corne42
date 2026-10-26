@@ -1,0 +1,5 @@
+if(CONFIG_CORNE42_OLED_STATUS)
+  zephyr_library()
+  zephyr_library_include_directories(${CMAKE_SOURCE_DIR}/include)
+  zephyr_library_sources(src/status.c src/util.c src/mimikyu.c)
+endif()
